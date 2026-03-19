@@ -1,8 +1,8 @@
 {
   "name": "Orbit Wallet",
   "short_name": "Orbit",
-  "description": "Your Orbit financial dashboard",
-  "start_url": "/orbit-wallet.html",
+  "description": "Your Orbit financial wallet",
+  "start_url": "/index.html",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#f7f8ff",
@@ -20,7 +20,5 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
-  ],
-  "categories": ["finance"],
-  "screenshots": []
+  ]
 }
