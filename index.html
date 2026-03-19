@@ -768,11 +768,247 @@
   .tx-group-card .tx-item + .tx-item { border-top: 1px solid rgba(176,184,222,0.18); }
   .tx-amount--pending { color: var(--color-text-tertiary); }
 
+
+  /* ── TAB (cross-fade) TRANSITIONS ──────────────────────────── */
+  /* Tab pages sit stacked; we fade between them               */
+  .tab-page {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--color-primary-50);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .tab-page.tab-active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+  }
+
+  /* ── NAV ACTIVE DOT ──────────────────────────────────────── */
+  .nav-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-primary-500);
+    margin-top: 2px;
+    opacity: 0;
+    transition: opacity 0.18s ease;
+  }
+  .nav-item.nav-active .nav-dot { opacity: 1; }
+
+  /* ── PAYMENTS PAGE ───────────────────────────────────────── */
+  .pay-topbar {
+    background: var(--color-bg-surface-primary);
+    flex-shrink: 0;
+    padding-top: env(safe-area-inset-top);
+  }
+  .pay-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--space-400);
+    height: 64px;
+  }
+  .pay-title {
+    font-family: var(--font-body);
+    font-weight: var(--w-bold);
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: 0;
+    color: var(--color-text-primary);
+  }
+  .pay-scroll {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 var(--space-app-margin) 96px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .pay-scroll::-webkit-scrollbar { display: none; }
+
+  /* Action tiles row */
+  .pay-tiles {
+    display: flex;
+    gap: var(--space-400);
+    padding: var(--space-section-gap) 0 var(--space-400);
+  }
+  .pay-tile {
+    flex: 1;
+    background: #e6eaff;
+    border-radius: var(--radius-container);
+    padding: var(--space-400);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-400);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.15s, transform 0.1s;
+    min-height: 108px;
+  }
+  .pay-tile:active { background: #d0d8f8; transform: scale(0.97); }
+  .pay-tile-label {
+    font-family: var(--font-body);
+    font-weight: var(--w-semi);
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--color-text-primary);
+    text-align: center;
+    letter-spacing: 0;
+  }
+
+  /* Divider */
+  .pay-divider {
+    height: 1px;
+    background: rgba(176,184,222,0.25);
+    margin: 0 calc(-1 * var(--space-app-margin));
+  }
+
+  /* List row */
+  .pay-list-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-400);
+    padding: var(--space-500) 0;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .pay-list-row:active { opacity: 0.7; }
+  .pay-list-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary-500);
+  }
+  .pay-list-text { flex: 1; display: flex; flex-direction: column; gap: var(--space-100); }
+  .pay-list-title {
+    font-family: var(--font-body);
+    font-weight: var(--w-semi);
+    font-size: var(--size-list-item);
+    line-height: var(--lh-list-item);
+    color: var(--color-text-primary);
+  }
+  .pay-list-sub {
+    font-family: var(--font-body);
+    font-weight: var(--w-regular);
+    font-size: var(--size-body-md);
+    line-height: var(--lh-body-md);
+    color: #5e5e5e;
+  }
+  .pay-list-chevron {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-tertiary);
+  }
+
+
+  /* ── PLACEHOLDER / COMING SOON PAGES ──────────────────────── */
+  .placeholder-page {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #fff;
+    will-change: transform;
+    transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(100%);
+    z-index: 3;
+  }
+  .placeholder-page.slide-in {
+    transform: translateX(0);
+    box-shadow: -4px 0 24px rgba(0,0,0,0.10);
+  }
+  .placeholder-topbar {
+    background: #fff;
+    flex-shrink: 0;
+    padding-top: env(safe-area-inset-top);
+    border-bottom: 1px solid rgba(176,184,222,0.2);
+  }
+  .placeholder-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 64px;
+    padding: 0 var(--space-400);
+    position: relative;
+  }
+  .placeholder-back {
+    position: absolute;
+    left: var(--space-400);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .placeholder-back:active { background: rgba(0,0,0,0.06); }
+  .placeholder-title {
+    font-family: var(--font-body);
+    font-weight: var(--w-medium);
+    font-size: 18px;
+    line-height: 20px;
+    color: var(--color-text-primary);
+    text-align: center;
+  }
+  .placeholder-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-300);
+    padding: var(--space-section-gap);
+    color: var(--color-text-tertiary);
+  }
+  .placeholder-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--color-bg-surface-brand);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-200);
+  }
+  .placeholder-heading {
+    font-family: var(--font-body);
+    font-weight: var(--w-semi);
+    font-size: 20px;
+    line-height: 28px;
+    color: var(--color-text-primary);
+    text-align: center;
+  }
+  .placeholder-sub {
+    font-family: var(--font-body);
+    font-weight: var(--w-regular);
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--color-text-tertiary);
+    text-align: center;
+  }
+
 </style>
 </head>
 <body>
 <div class="app-shell">
-<div class="page page--home" id="page-home">
+<div class="page page--home tab-page tab-active" id="page-home">
 
   <!-- ── TOP BAR ── -->
   <div class="top-bar">
@@ -960,58 +1196,59 @@
   </div><!-- /scroll-content -->
 
   <!-- ── BOTTOM NAV ── -->
-  <nav class="bottom-nav">
+  <nav class="bottom-nav" id="main-nav">
 
-    <!-- Wallet (active) -->
-    <div class="nav-item">
-      <div class="nav-icon">
-        <!-- Phosphor wallet icon – active/filled brand color -->
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Wallet -->
+    <div class="nav-item nav-active" id="nav-wallet" onclick="switchTab('wallet')" style="-webkit-tap-highlight-color:transparent">
+      <div class="nav-icon" id="nav-wallet-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M21 7H5a2 2 0 00-2 2v9a2 2 0 002 2h16a1 1 0 001-1V8a1 1 0 00-1-1z" fill="#001b96"/>
           <circle cx="17.5" cy="13.5" r="1.5" fill="white"/>
           <path d="M5 7l1.5-3h11L19 7" stroke="#001b96" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
-      <span class="nav-label nav-label--active">Wallet</span>
+      <span class="nav-label nav-label--active" id="nav-wallet-label">Wallet</span>
+      <div class="nav-dot"></div>
     </div>
 
     <!-- Payment -->
-    <div class="nav-item">
-      <div class="nav-icon">
-        <!-- Phosphor transfer arrows -->
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div class="nav-item" id="nav-payment" onclick="switchTab('payment')" style="-webkit-tap-highlight-color:transparent">
+      <div class="nav-icon" id="nav-payment-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M5 9h14M16 5l4 4-4 4M19 15H5M9 11l-4 4 4 4" stroke="#727272" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
-      <span class="nav-label nav-label--inactive">Payment</span>
+      <span class="nav-label nav-label--inactive" id="nav-payment-label">Payment</span>
+      <div class="nav-dot"></div>
     </div>
 
     <!-- Card -->
-    <div class="nav-item">
+    <div class="nav-item" id="nav-card" onclick="alert('Card coming soon')" style="-webkit-tap-highlight-color:transparent">
       <div class="nav-icon">
-        <!-- Phosphor credit card -->
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <rect x="2" y="5" width="20" height="14" rx="2" stroke="#727272" stroke-width="1.7"/>
           <path d="M2 10h20" stroke="#727272" stroke-width="1.7"/>
           <path d="M6 15h5" stroke="#727272" stroke-width="1.7" stroke-linecap="round"/>
         </svg>
       </div>
       <span class="nav-label nav-label--inactive">Card</span>
+      <div class="nav-dot"></div>
     </div>
 
     <!-- Perks -->
-    <div class="nav-item">
+    <div class="nav-item" id="nav-perks" onclick="alert('Perks coming soon')" style="-webkit-tap-highlight-color:transparent">
       <div class="nav-icon">
-        <!-- Phosphor star -->
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M12 2l2.9 7.26L22 10.27l-5.46 5.32 1.29 7.51L12 19.27l-5.83 3.83 1.29-7.51L2 10.27l7.1-1.01L12 2z" stroke="#727272" stroke-width="1.7" stroke-linejoin="round"/>
         </svg>
       </div>
       <span class="nav-label nav-label--inactive">Perks</span>
+      <div class="nav-dot"></div>
     </div>
 
     <div class="home-indicator"></div>
   </nav>
+
 
 </div><!-- /page-home -->
 
@@ -1234,35 +1471,254 @@
 
   </div><!-- /tx-scroll -->
 </div><!-- /page-transactions -->
+
+<!-- ── PAYMENTS PAGE (tab) ─────────────────────────────────────── -->
+<div class="page tab-page" id="page-payment" style="background:#fff">
+
+  <!-- Top bar -->
+  <div class="pay-topbar">
+    <div class="pay-header">
+      <span class="pay-title">Payments</span>
+      <div class="avatar">AB</div>
+    </div>
+  </div>
+
+  <!-- Scrollable content -->
+  <div class="pay-scroll">
+
+    <!-- Action tiles -->
+    <div class="pay-tiles">
+
+      <div class="pay-tile" onclick="navigateTo('transfer-money')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M5 9h14M16 5l4 4-4 4M19 15H5M9 11l-4 4 4 4" stroke="#001b96" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="pay-tile-label">Transfer money</span>
+      </div>
+
+      <div class="pay-tile" onclick="navigateTo('transfer-savings')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <rect x="2" y="7" width="20" height="14" rx="2" stroke="#001b96" stroke-width="1.7"/>
+          <path d="M16 7V5a2 2 0 00-4 0v2" stroke="#001b96" stroke-width="1.7" stroke-linecap="round"/>
+          <circle cx="12" cy="14" r="2" stroke="#001b96" stroke-width="1.7"/>
+          <path d="M12 16v1" stroke="#001b96" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+        <span class="pay-tile-label">Transfer to savings</span>
+      </div>
+
+      <div class="pay-tile" onclick="navigateTo('receive-money')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M12 3v14M7 12l5 5 5-5" stroke="#001b96" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M5 21h14" stroke="#001b96" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+        <span class="pay-tile-label">Receive money</span>
+      </div>
+
+    </div>
+
+    <!-- Divider -->
+    <div class="pay-divider"></div>
+
+    <!-- Your payees row -->
+    <div class="pay-list-row" onclick="navigateTo('payees')">
+      <div class="pay-list-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="8" r="4" stroke="#001b96" stroke-width="1.7"/>
+          <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#001b96" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="pay-list-text">
+        <span class="pay-list-title">Your payees</span>
+        <span class="pay-list-sub">Add or remove payees to send money to</span>
+      </div>
+      <div class="pay-list-chevron">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M9 6l6 6-6 6" stroke="#727272" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+  </div><!-- /pay-scroll -->
+</div><!-- /page-payment -->
+
+
+<!-- ── PLACEHOLDER PAGES (slide in from right like transactions) ── -->
+
+<div class="placeholder-page" id="page-transfer-money">
+  <div class="placeholder-topbar">
+    <div class="placeholder-nav">
+      <button class="placeholder-back" onclick="navigateBack('transfer-money')" aria-label="Back">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 19l-7-7 7-7" stroke="#353535" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <span class="placeholder-title">Transfer money</span>
+    </div>
+  </div>
+  <div class="placeholder-body">
+    <div class="placeholder-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 9h14M16 5l4 4-4 4M19 15H5M9 11l-4 4 4 4" stroke="#001b96" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <span class="placeholder-heading">Transfer money</span>
+    <span class="placeholder-sub">This screen is coming soon.</span>
+  </div>
+</div>
+
+<div class="placeholder-page" id="page-transfer-savings">
+  <div class="placeholder-topbar">
+    <div class="placeholder-nav">
+      <button class="placeholder-back" onclick="navigateBack('transfer-savings')" aria-label="Back">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 19l-7-7 7-7" stroke="#353535" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <span class="placeholder-title">Transfer to savings</span>
+    </div>
+  </div>
+  <div class="placeholder-body">
+    <div class="placeholder-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="#001b96" stroke-width="1.8"/><path d="M16 7V5a2 2 0 00-4 0v2" stroke="#001b96" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="14" r="2" stroke="#001b96" stroke-width="1.8"/></svg>
+    </div>
+    <span class="placeholder-heading">Transfer to savings</span>
+    <span class="placeholder-sub">This screen is coming soon.</span>
+  </div>
+</div>
+
+<div class="placeholder-page" id="page-receive-money">
+  <div class="placeholder-topbar">
+    <div class="placeholder-nav">
+      <button class="placeholder-back" onclick="navigateBack('receive-money')" aria-label="Back">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 19l-7-7 7-7" stroke="#353535" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <span class="placeholder-title">Receive money</span>
+    </div>
+  </div>
+  <div class="placeholder-body">
+    <div class="placeholder-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 3v14M7 12l5 5 5-5" stroke="#001b96" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 21h14" stroke="#001b96" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </div>
+    <span class="placeholder-heading">Receive money</span>
+    <span class="placeholder-sub">This screen is coming soon.</span>
+  </div>
+</div>
+
+<div class="placeholder-page" id="page-payees">
+  <div class="placeholder-topbar">
+    <div class="placeholder-nav">
+      <button class="placeholder-back" onclick="navigateBack('payees')" aria-label="Back">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 19l-7-7 7-7" stroke="#353535" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <span class="placeholder-title">Your payees</span>
+    </div>
+  </div>
+  <div class="placeholder-body">
+    <div class="placeholder-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#001b96" stroke-width="1.8"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#001b96" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </div>
+    <span class="placeholder-heading">Your payees</span>
+    <span class="placeholder-sub">This screen is coming soon.</span>
+  </div>
+</div>
+
 </div><!-- /app-shell -->
 
 <script>
-  // ── NAVIGATION ─────────────────────────────────────────────────────
+  // ── PAGE REFS ──────────────────────────────────────────────────────
   const pageHome = document.getElementById('page-home');
   const pageTx   = document.getElementById('page-transactions');
+  const pagePay  = document.getElementById('page-payment');
+
+  // ── DRILL-DOWN NAVIGATION (slide push/pop) ─────────────────────────
+  // Placeholder page ids
+  const PLACEHOLDER_PAGES = ['transfer-money', 'transfer-savings', 'receive-money', 'payees'];
 
   function navigateTo(dest) {
     if (dest === 'transactions') {
-      // Slide home left, bring transactions in from right
       pageHome.classList.add('slide-out');
       pageTx.classList.add('slide-in');
       history.pushState({ page: 'transactions' }, '', '#transactions');
+    } else if (PLACEHOLDER_PAGES.includes(dest)) {
+      // Slide in placeholder from right, dim the payment page underneath
+      const el = document.getElementById('page-' + dest);
+      if (el) {
+        el.classList.add('slide-in');
+        history.pushState({ page: dest }, '', '#' + dest);
+      }
     } else {
-      // Slide transactions back right, restore home
+      // go home / back to wallet
       pageTx.classList.remove('slide-in');
       pageHome.classList.remove('slide-out');
       history.pushState({ page: 'home' }, '', '#');
     }
   }
 
-  // Handle hardware/browser back gesture
+  function navigateBack(dest) {
+    const el = document.getElementById('page-' + dest);
+    if (el) el.classList.remove('slide-in');
+    history.back();
+  }
+
   window.addEventListener('popstate', (e) => {
     const page = e.state?.page ?? 'home';
     if (page === 'home') {
       pageTx.classList.remove('slide-in');
       pageHome.classList.remove('slide-out');
+    } else if (PLACEHOLDER_PAGES.includes(page)) {
+      // handled by navigateBack
     }
   });
+
+  // ── TAB NAVIGATION (cross-fade) ────────────────────────────────────
+  const TAB_PAGES = { wallet: pageHome, payment: pagePay };
+  const TAB_NAV_ITEMS = {
+    wallet:  document.getElementById('nav-wallet'),
+    payment: document.getElementById('nav-payment'),
+  };
+  const NAV_ICON_SVG = {
+    wallet: {
+      active:   '<path d="M21 7H5a2 2 0 00-2 2v9a2 2 0 002 2h16a1 1 0 001-1V8a1 1 0 00-1-1z" fill="#001b96"/><circle cx="17.5" cy="13.5" r="1.5" fill="white"/><path d="M5 7l1.5-3h11L19 7" stroke="#001b96" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
+      inactive: '<path d="M21 7H5a2 2 0 00-2 2v9a2 2 0 002 2h16a1 1 0 001-1V8a1 1 0 00-1-1z" stroke="#727272" stroke-width="1.7" fill="none"/><circle cx="17.5" cy="13.5" r="1.5" fill="#727272"/><path d="M5 7l1.5-3h11L19 7" stroke="#727272" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'
+    },
+    payment: {
+      active:   '<path d="M5 9h14M16 5l4 4-4 4M19 15H5M9 11l-4 4 4 4" stroke="#001b96" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>',
+      inactive: '<path d="M5 9h14M16 5l4 4-4 4M19 15H5M9 11l-4 4 4 4" stroke="#727272" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>'
+    }
+  };
+
+  let activeTab = 'wallet';
+
+  function switchTab(tab) {
+    if (tab === activeTab) return;
+    // Close any open drill-down pages first
+    if (pageTx.classList.contains('slide-in')) {
+      pageTx.classList.remove('slide-in');
+      pageHome.classList.remove('slide-out');
+    }
+    PLACEHOLDER_PAGES.forEach(id => {
+      const el = document.getElementById('page-' + id);
+      if (el) el.classList.remove('slide-in');
+    });
+
+    const prev = activeTab;
+    activeTab = tab;
+
+    // Cross-fade pages
+    Object.entries(TAB_PAGES).forEach(([key, el]) => {
+      el.classList.toggle('tab-active', key === tab);
+    });
+
+    // Update nav items
+    Object.entries(TAB_NAV_ITEMS).forEach(([key, el]) => {
+      if (!el) return;
+      const isActive = key === tab;
+      el.classList.toggle('nav-active', isActive);
+      // Swap label colour
+      const label = el.querySelector('.nav-label');
+      label.classList.toggle('nav-label--active', isActive);
+      label.classList.toggle('nav-label--inactive', !isActive);
+      // Swap icon fill
+      const svgEl = el.querySelector('.nav-icon svg');
+      if (NAV_ICON_SVG[key]) {
+        svgEl.innerHTML = isActive ? NAV_ICON_SVG[key].active : NAV_ICON_SVG[key].inactive;
+      }
+    });
+  }
 
   // ── FILTER PILLS ───────────────────────────────────────────────────
   function setFilter(btn, filter) {
