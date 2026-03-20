@@ -367,7 +367,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 338px;
+    width: 100%;
   }
   /* Button – secondary, small */
   .btn-sm {
@@ -2616,7 +2616,7 @@
               </div>
               <div class="card-balance">$1,890.27</div>
             </div>
-            <div class="card-actions">
+            <div class="card-actions" style="justify-content:space-between">
               <button class="btn-sm" onclick="navigateTo('transfer-money')"><img src="https://www.figma.com/api/mcp/asset/3ea2f8a8-5ce9-46f9-b664-5345baa73445" alt="" style="width:16px;height:16px"/></button>
               <button class="btn-sm btn-sm--icon-only">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0">
@@ -3000,7 +3000,7 @@
       </div><!-- /card-flip-scene -->
 
       <!-- Quick actions -->
-      <div class="card-actions">
+      <div class="card-actions" style="justify-content:space-between">
         <button class="card-action-btn" id="card-details-btn" onclick="toggleCardDetails()">
           <div class="card-action-icon" id="card-details-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 4.54688C15.2573 4.54688 18.216 5.78534 20.5596 8.12891C22.317 9.88636 23.1091 11.6394 23.1426 11.7148C23.1826 11.8048 23.2031 11.9026 23.2031 12.001C23.2031 12.0992 23.1824 12.1963 23.1426 12.2861V12.2871C23.1087 12.3635 22.3165 14.1151 20.5596 15.8721C18.216 18.2147 15.2573 19.4531 12 19.4531C8.74268 19.4531 5.784 18.2147 3.44043 15.8721C1.68352 14.1152 0.891332 12.3635 0.857422 12.2871V12.2861C0.817567 12.1963 0.796881 12.0992 0.796875 12.001C0.796875 11.9026 0.817443 11.8048 0.857422 11.7148L0.858398 11.7139C0.887047 11.644 1.6821 9.88724 3.44043 8.12891C5.784 5.78534 8.74267 4.54688 12 4.54688ZM13.4531 8.49219C12.7593 8.20481 11.9953 8.12986 11.2588 8.27637C10.5225 8.42293 9.84631 8.78455 9.31543 9.31543C8.78455 9.84631 8.42294 10.5225 8.27637 11.2588C8.12986 11.9953 8.20481 12.7593 8.49219 13.4531C8.77957 14.1469 9.26627 14.74 9.89062 15.1572C10.515 15.5744 11.2491 15.7969 12 15.7969C13.007 15.7969 13.9725 15.3966 14.6846 14.6846C15.3966 13.9725 15.7969 13.007 15.7969 12C15.7969 11.2491 15.5744 10.515 15.1572 9.89062C14.74 9.26627 14.1469 8.77957 13.4531 8.49219Z" fill="white"/></svg>
