@@ -2583,10 +2583,17 @@
 <body>
 <script>
   function setRealVh() {
-    document.documentElement.style.setProperty('--real-vh', (window.innerHeight * 0.01) + 'px');
+    // On iOS PWA, window.innerHeight includes the home indicator area.
+    // visualViewport.height is the actual usable height.
+    const h = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+    document.documentElement.style.setProperty('--real-vh', (h * 0.01) + 'px');
   }
   setRealVh();
-  window.addEventListener('resize', setRealVh);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', setRealVh);
+  } else {
+    window.addEventListener('resize', setRealVh);
+  }
 </script>
 
 <div class="app-shell">
