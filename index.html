@@ -829,6 +829,9 @@
     opacity: 0;
     transition: opacity 0.18s ease;
   }
+  .nav-dot--active {
+    opacity: 1;
+  }
   .nav-item.nav-active .nav-dot { opacity: 1; }
 
   /* ── PAYMENTS PAGE ───────────────────────────────────────── */
@@ -3664,9 +3667,9 @@
       label.classList.toggle('nav-label--active', isActive);
       label.classList.toggle('nav-label--inactive', !isActive);
 
-      // Active dot — set directly, don't rely on CSS cascade timing
+      // Active dot — use class toggle, not inline style (survives WebKit repaints)
       const dot = el.querySelector('.nav-dot');
-      if (dot) dot.style.opacity = isActive ? '1' : '0';
+      if (dot) dot.classList.toggle('nav-dot--active', isActive);
 
       // Icon swap
       const navIconEl = el.querySelector('.nav-icon');
@@ -3683,7 +3686,7 @@
       if (!el) return;
       const isActive = key === activeTab;
       const dot = el.querySelector('.nav-dot');
-      if (dot) dot.style.opacity = isActive ? '1' : '0';
+      if (dot) dot.classList.toggle('nav-dot--active', isActive);
       const label = el.querySelector('.nav-label');
       if (label) {
         label.classList.toggle('nav-label--active', isActive);
