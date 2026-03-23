@@ -3567,21 +3567,21 @@
     if (dest === 'transactions') {
       pageHome.classList.add('slide-out');
       pageTx.classList.add('slide-in');
-      if (nav) nav.style.display = 'none';
+      if (nav) { nav.style.visibility = 'hidden'; nav.style.pointerEvents = 'none'; }
       history.pushState({ page: 'transactions' }, '', '#transactions');
     } else if (PLACEHOLDER_PAGES.includes(dest)) {
       // Slide in placeholder from right, dim the payment page underneath
       const el = document.getElementById('page-' + dest);
       if (el) {
         el.classList.add('slide-in');
-        if (nav) nav.style.display = 'none';
+        if (nav) { nav.style.visibility = 'hidden'; nav.style.pointerEvents = 'none'; }
         history.pushState({ page: dest }, '', '#' + dest);
       }
     } else {
       // go home / back to wallet
       pageTx.classList.remove('slide-in');
       pageHome.classList.remove('slide-out');
-      if (nav) { nav.style.display = ''; refreshNav(); }
+      if (nav) { nav.style.visibility = ''; nav.style.pointerEvents = ''; refreshNav(); }
       history.pushState({ page: 'home' }, '', '#');
     }
   }
@@ -3600,7 +3600,7 @@
     const txDetailOpen = document.getElementById('page-tx-detail') && document.getElementById('page-tx-detail').classList.contains('slide-in');
     if (!anyOpen && !txOpen && !txDetailOpen) {
       const nav = document.getElementById('main-nav');
-      if (nav) nav.style.display = ''; refreshNav();
+      if (nav) nav.style.visibility = ''; nav.style.pointerEvents = ''; refreshNav();
     }
     history.back();
   }
@@ -3611,7 +3611,7 @@
     if (page === 'home') {
       pageTx.classList.remove('slide-in');
       pageHome.classList.remove('slide-out');
-      if (nav) nav.style.display = ''; refreshNav();
+      if (nav) nav.style.visibility = ''; nav.style.pointerEvents = ''; refreshNav();
     } else if (PLACEHOLDER_PAGES.includes(page)) {
       // handled by navigateBack
     }
@@ -4159,14 +4159,14 @@
       elType.textContent  = data.type;
 
       page.classList.add('slide-in');
-      const _nav = document.getElementById('main-nav'); if (_nav) _nav.style.display = 'none';
+      const _nav = document.getElementById('main-nav'); if (_nav) { _nav.style.visibility = 'hidden'; _nav.style.pointerEvents = 'none'; }
       history.pushState({ page: 'tx-detail' }, '', '#tx-detail');
     };
 
     window.closeTxDetail = function() {
       page.classList.remove('slide-in');
       const _nav = document.getElementById('main-nav');
-      if (_nav) _nav.style.display = ''; refreshNav();
+      if (_nav) _nav.style.visibility = ''; nav.style.pointerEvents = ''; refreshNav();
       history.back();
     };
 
