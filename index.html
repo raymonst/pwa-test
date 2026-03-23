@@ -601,17 +601,28 @@
     transform: translateX(-50%);
     width: 100%;
     max-width: 500px;
-    height: calc(var(--nav-h) + env(safe-area-inset-bottom));
+    height: var(--nav-h);
     background: rgba(255,255,255,0.97);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-top: 1px solid rgba(176,184,222,0.25);
     box-shadow: 0 0 24px 0 rgba(0,0,0,0.04);
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     padding-top: var(--space-300);
-    padding-bottom: max(env(safe-area-inset-bottom), 12px);
+    padding-bottom: 0;
     z-index: 20;
+  }
+  /* In PWA standalone mode, extend nav to cover home indicator area */
+  @media (display-mode: standalone) {
+    .page {
+      bottom: calc(var(--nav-h) + env(safe-area-inset-bottom));
+    }
+    .bottom-nav {
+      height: calc(var(--nav-h) + env(safe-area-inset-bottom));
+      padding-bottom: env(safe-area-inset-bottom);
+      align-items: flex-start;
+    }
   }
   .nav-item {
     flex: 1;
@@ -666,7 +677,7 @@
     top: 0;
     left: 0;
     right: 0;
-    bottom: calc(var(--nav-h) + env(safe-area-inset-bottom));
+    bottom: var(--nav-h);
     background: var(--color-primary-50);
     display: flex;
     flex-direction: column;
@@ -804,7 +815,7 @@
     top: 0;
     left: 0;
     right: 0;
-    bottom: calc(var(--nav-h) + env(safe-area-inset-bottom));
+    bottom: var(--nav-h);
     display: flex;
     flex-direction: column;
     overflow: hidden;
