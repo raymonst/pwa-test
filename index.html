@@ -677,7 +677,7 @@
   }
   .page--home { transform: translateX(0); z-index: 1; }
   .page--home.slide-out { transform: translateX(-28%); }
-  .page--transactions { transform: translateX(100%); z-index: 22; background: #fff; visibility: hidden; pointer-events: none; bottom: 0; }
+  .page--transactions { transform: translateX(100%); z-index: 22; background: #fff; visibility: hidden; bottom: 0; }
   .page--transactions.slide-in { transform: translateX(0); box-shadow: -4px 0 24px rgba(0,0,0,0.12); visibility: visible; }
   .page--home::after {
     content: '';
@@ -968,7 +968,6 @@
     transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
     transform: translateX(100%);
     visibility: hidden;
-    pointer-events: none;
     z-index: 23;
   }
   .placeholder-page.slide-in {
@@ -2397,10 +2396,6 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    pointer-events: none;
-  }
-  .tx-detail-page.slide-in {
-    pointer-events: auto;
   }
   .tx-detail-page.slide-in {
     transform: translateX(0);
