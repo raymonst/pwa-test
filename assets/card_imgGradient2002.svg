@@ -1,0 +1,25 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 407 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Mask group">
+<mask id="mask0_0_89" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="407" height="256">
+<rect id="Rectangle 1" width="407" height="256" rx="12" fill="var(--fill-0, #0F0F0F)"/>
+</mask>
+<g mask="url(#mask0_0_89)">
+<g id="Vector 7" filter="url(#filter0_f_0_89)">
+<path d="M76.1671 -3.49091C201.174 76.2182 415.14 -37.2364 427.35 16.2909C439.56 69.8181 427.35 198.4 361.067 251.927C294.784 305.455 402.93 306.618 427.35 286.836" stroke="url(#paint0_linear_0_89)" stroke-width="39" stroke-linecap="round"/>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_0_89" x="4.6647" y="-74.9934" width="498.382" height="445.094" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="26" result="effect1_foregroundBlur_0_89"/>
+</filter>
+<linearGradient id="paint0_linear_0_89" x1="70.3528" y1="22.1092" x2="422.396" y2="166.211" gradientUnits="userSpaceOnUse">
+<stop stop-color="#A0FEFC"/>
+<stop offset="0.333333" stop-color="#C779D0"/>
+<stop offset="0.630208" stop-color="#FFFD41"/>
+<stop offset="1" stop-color="#FF00FF"/>
+</linearGradient>
+</defs>
+</svg>
